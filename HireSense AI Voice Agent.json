@@ -1,0 +1,191 @@
+{
+  "name": "HireSense AI Voice Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "HireSense AI Voice Interview Form",
+        "formDescription": "Please fill in your details below to begin the AI-powered interview process. After submission, the HireSense voice agent will initiate an automated interview call based on your profile and responses. Ensure your phone number is active and entered correctly with country code.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name"
+            },
+            {
+              "fieldLabel": "Phone",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Gmail",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Document",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "92965fea-8fee-4043-8b11-ff6b0554bde5",
+      "name": "On form submission",
+      "webhookId": "8179d609-34e9-479a-92f1-1faa1560a1f6"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Document",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "67ebf6e4-f365-491f-8f1c-3c56b063f59a",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "485b388b-bd4b-40ec-b1c6-12efe13495f7",
+              "name": "Na",
+              "value": "Divya",
+              "type": "string"
+            },
+            {
+              "id": "9f060ee0-fa49-4958-9b58-9dc8835de08b",
+              "name": "Ph",
+              "value": "6362398700",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "9ec2a87a-0440-4a73-adc4-4c7e43e3ff2a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.bolna.ai/call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer bn-da7b2008540a49cf92d37f0c6129c7ff"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"agent_id\": \"2409adde-9b24-44e2-b6a6-2409395b3be4\",\n  \"recipient_phone_number\": \"+91{{$json.Ph}}\",\n  \"from_phone_number\": \"+918031015445\",\n  \"user_data\": {\n    \"candidate_name\": \"{{$json.Na}}\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        832,
+        0
+      ],
+      "id": "b829b718-fe7c-46ca-aaf6-e13b1341858d",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const phone = $json.Phone || $json.phone || $json[\"Phone Number\"] || \"\";\n\nlet cleaned = String(phone).replace(/\\D/g, \"\");\n\nif (cleaned.length === 10) {\n  cleaned = \"91\" + cleaned;\n}\n\nreturn [{\n  ...$json,\n  debug_phone_sent_to_bolna: \"+\" + cleaned\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "d01543a1-285b-4e74-8757-b352ca574e86",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "aab740c7-3a44-4bf6-9191-2f7dd651fff6",
+  "meta": {
+    "instanceId": "2dd385afb26d2f89080a6be6795f30b6b5b4ed0aac0144e120cf1555f0e90dff"
+  },
+  "id": "GC8C5wxbgOyQqsdY",
+  "tags": []
+}
