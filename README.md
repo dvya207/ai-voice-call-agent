@@ -1,6 +1,7 @@
 # HireSense AI Voice Interview Agent
 
 An AI-powered interview automation system built using n8n, Bolna AI, and Plivo SIP integration to conduct real-time voice interviews with candidates.
+Built with Indian telephony routing support using Plivo SIP integration for AI-powered voice interview automation.
 
 ## Features
 
