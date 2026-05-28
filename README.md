@@ -33,6 +33,25 @@ An AI-powered interview automation system built using n8n, Bolna AI, and Plivo S
 5. AI asks contextual follow-up questions
 6. Interview concludes automatically
 
+## System Architecture
+
+Candidate Form Submission
+↓
+n8n Workflow Automation
+↓
+Resume/File Extraction
+↓
+AI Prompt Processing
+↓
+Bolna AI Voice Agent
+↓
+Plivo SIP Trunk Calling
+↓
+Real-time AI Interview
+↓
+Call Logs & Conversation Handling
+
+
 ## Future Enhancements
 
 * Resume Parsing
