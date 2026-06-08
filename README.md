@@ -1,20 +1,19 @@
 # HireSense AI Voice Interview Agent
 
-An AI-powered interview automation system built using n8n, Bolna AI, and Plivo SIP integration to conduct real-time voice interviews with candidates.
-Built with Indian telephony routing support using Plivo SIP integration for AI-powered voice interview automation.
+An AI-powered interview automation system built using n8n, Bolna AI, and Plivo SIP integration to conduct real-time voice interviews with candidates. The system automates candidate screening through AI-driven voice interactions, dynamic questioning, and automated call handling using Indian telephony routing support.
 
 ## Features
 
 * AI Voice Interview Automation
 * Dynamic Technical Questioning
 * Human-like AI Conversations
-* Automated Calling Workflow
+* Automated Outbound Calling Workflow
 * SIP Trunk Integration
 * Personalized Candidate Interaction
 * Multi-language Support
 * Adaptive Follow-up Questioning
-* Real-time AI Voice Interaction
-* Automated Interview Handling
+* Real-time Voice-Based Interviews
+* Automated Interview Completion and Logging
 
 ## Technologies Used
 
@@ -27,38 +26,44 @@ Built with Indian telephony routing support using Plivo SIP integration for AI-p
 
 ## Workflow
 
-1. Candidate submits details through form
-2. n8n workflow processes candidate data
-3. AI voice agent initiates outbound call
-4. Dynamic technical interview is conducted
-5. AI asks contextual follow-up questions
-6. Interview concludes automatically
+1. Candidate submits details through a web form.
+2. n8n workflow processes candidate information.
+3. AI voice agent initiates an outbound call.
+4. Dynamic technical interview is conducted.
+5. AI generates contextual follow-up questions.
+6. Candidate responses are processed in real time.
+7. Interview concludes automatically and workflow execution is completed.
 
 ## System Architecture
 
+```text
 Candidate Form Submission
-↓
+          ↓
 n8n Workflow Automation
-↓
-Resume/File Extraction
-↓
-AI Prompt Processing
-↓
+          ↓
+Resume / Candidate Data Processing
+          ↓
+AI Prompt Generation
+          ↓
 Bolna AI Voice Agent
-↓
-Plivo SIP Trunk Calling
-↓
-Real-time AI Interview
-↓
-Call Logs & Conversation Handling
+          ↓
+Plivo SIP Trunk Integration
+          ↓
+Real-Time AI Interview
+          ↓
+Conversation Logs & Interview Handling
+```
 
+## Learning Outcomes
 
-## Future Enhancements
+* Workflow Automation using n8n
+* AI Voice Agent Integration
+* SIP Telephony Integration with Plivo
+* REST API Integration
+* Conversational AI Design
+* End-to-End Interview Automation
+* Real-Time Event Driven Workflows
 
-* Resume Parsing
-* AI Scoring System
-* Interview Analytics Dashboard
+## License
 
-## Author
-
-Divya Jain
+This project is developed for educational and learning purposes.
