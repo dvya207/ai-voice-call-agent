@@ -64,6 +64,7 @@ Conversation Logs & Interview Handling
 * End-to-End Interview Automation
 * Real-Time Event Driven Workflows
 
-## License
+## Author
+Divya Jain
 
-This project is developed for educational and learning purposes.
+
